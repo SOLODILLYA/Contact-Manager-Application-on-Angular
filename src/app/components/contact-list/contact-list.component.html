@@ -1,0 +1,13 @@
+<div class="contact-list-container">
+  <div *ngFor="let contact of contacts" class="contact-card">
+    <div class="contact-info">
+      <h3>{{ contact.name }}</h3>
+      <p>Email: {{ contact.email }}</p>
+      <p>Phone: {{ contact.phone }}</p>
+    </div>
+    <div class="button-container">
+      <button class="delete-button" (click)="deleteContact(contact.id)">Delete</button>
+      <button class="edit-button" (click)="onEditContact(contact)">Edit</button>
+    </div>
+  </div>
+</div>

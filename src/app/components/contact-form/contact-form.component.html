@@ -1,0 +1,24 @@
+<form #contactForm="ngForm" (ngSubmit)="saveContact()">
+    <label>Name</label>
+    <input [(ngModel)]="contact.name" name="name" required />
+    <div *ngIf="contactForm.controls['name']?.invalid && contactForm.controls['name']?.touched" class="error">
+      Name is required.
+    </div>
+  
+    <label>Email</label>
+    <input [(ngModel)]="contact.email" name="email" required email />
+    <div *ngIf="contactForm.controls['email']?.invalid && contactForm.controls['email']?.touched" class="error">
+      <span *ngIf="contactForm.controls['email']?.errors?.['required']" class="error">Email is required.</span>
+      <span *ngIf="contactForm.controls['email']?.errors?.['email']" class="error">Invalid email format.</span>
+    </div>
+  
+    <label>Phone</label>
+    <input [(ngModel)]="contact.phone" name="phone" required pattern="^\+?[1-9][0-9]{1,14}$" />
+    <div *ngIf="contactForm.controls['phone']?.invalid && contactForm.controls['phone']?.touched" class="error">
+      <span *ngIf="contactForm.controls['phone']?.errors?.['required']" class="error">Phone number is required.</span>
+      <span *ngIf="contactForm.controls['phone']?.errors?.['pattern']" class="error">Invalid phone number format.</span>
+    </div>
+  
+    <button type="submit" [disabled]="contactForm.invalid">Save Contact</button>
+  </form>
+  
